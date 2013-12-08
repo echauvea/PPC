@@ -8,6 +8,10 @@ queens(N, X) :-
 queens_ff(N, X) :- 
     csp(X, N), 
     labeling_ff(X). 
+    
+queens_ffc(N, X) :- 
+    csp(X, N), 
+    labeling_ffc(X). 
 
 queens_med(N, X) :-
     csp(X, N),
@@ -45,6 +49,10 @@ constraints(X) :-
 % Instancie les variables en utilisant le prédicat deleteff
 labeling_ff(L) :- 
     (fromto(L, I, O, []) do deleteff(X, I, O), indomain(X)).
+    
+% Instancie les variables en utilisant le prédicat deleteffc
+labeling_ffc(L) :- 
+    (fromto(L, I, O, []) do deleteffc(X, I, O), indomain(X)).
 
 labeling_med(L) :- 
     foreach(X, L) do fd_search:indomain(X, median).
